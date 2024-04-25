@@ -1,10 +1,15 @@
 package calculator;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class App {
-
     public static void main(String[] args) {
+        /*연산 결과 10개를 저장할 길이 int배열 객체 생성*/
+        int[] calculationResult = new int[10];
+        /*연산 결과를 index에 저장하면서 카운트 초기값*/
+        int idx=0;
+
         Scanner sc = new Scanner(System.in);
         /* exit 문자열이 입력될 때 까지 연산 반복 반복문*/
         String input = null; // do - while 반복문 조건에 넣기 위해 입력값 초기화
@@ -41,8 +46,17 @@ public class App {
                         break;
                 }
                 System.out.println("결과: " + result);
+                /*연산결과 배열에 저장*/
+                calculationResult[idx] = result;
+                idx++; // 다음 반복시 다음 인덱스에 넣기 위에 증가 연산자
+
+                /*추가 연산 여부 확인*/
                 System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
                 input = sc.next();
             }
         } while (!(input.equals("exit"))); // exit이 입력되면 반복문 종료, 그 외에는 계속 반복와
+
+        System.out.println(Arrays.toString(calculationResult)); // 배열 저장 확인
+
+    }
 }
