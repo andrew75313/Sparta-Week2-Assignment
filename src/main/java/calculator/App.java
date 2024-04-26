@@ -1,14 +1,19 @@
 package calculator;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        /*연산 결과 10개를 저장할 길이 int배열 객체 생성*/
-        int[] calculationResult = new int[10];
-        /*연산 결과를 index에 저장하면서 카운트 초기값*/
-        int idx = 0;
+//        /*연산 결과 10개를 저장할 길이 int배열 객체 생성*/
+//        int[] calculationResult = new int[10];
+//        /*연산 결과를 index에 저장하면서 카운트 초기값*/
+//        int idx = 0;
+
+        /* 10개 이상 결과 무한 저장 Queue 생성*/
+        Queue<Integer> calculationResult = new LinkedList<>();
 
         Scanner sc = new Scanner(System.in);
         /* exit 문자열이 입력될 때 까지 연산 반복 반복문*/
@@ -23,7 +28,6 @@ public class App {
             System.out.print("두 번째 숫자를 입력하세요: ");
             /* Scanner를 사용하여 양의 정수를 입력받고 적합한 타입의 변수에 저장합니다. */
             int num2 = sc.nextInt();
-
 
 
             int result = 0; // 연산 결과 초기값
@@ -48,17 +52,27 @@ public class App {
                 }
                 System.out.println("결과: " + result);
 
-                /*인덱스 9초과를 했을 경우, 처음 값을 지우고 앞으로 당겨 마지막에 저장*/
-                if (idx > 9) {
-                    for (int i = 0; i < 9; i++) { // index 하나씩 앞으로 당기면서 덮어쓰기
-                        calculationResult[i] = calculationResult[i + 1];
-                    }
-                    calculationResult[9] = result; // 새로 들어온값 index 9에 덮어쓰기
-                    idx++; // 연산 수 카운팅 이어서
-                } else { // idx 카운트가 9이하일때
-                    /*연산결과 배열에 저장*/
-                    calculationResult[idx] = result;
-                    idx++; // 다음 반복시 다음 인덱스에 넣기 위에 증가 연산자
+//                /*인덱스 9초과를 했을 경우, 처음 값을 지우고 앞으로 당겨 마지막에 저장*/
+//                if (idx > 9) {
+//                    for (int i = 0; i < 9; i++) { // index 하나씩 앞으로 당기면서 덮어쓰기
+//                        calculationResult[i] = calculationResult[i + 1];
+//                    }
+//                    calculationResult[9] = result; // 새로 들어온값 index 9에 덮어쓰기
+//                    idx++; // 연산 수 카운팅 이어서
+//                } else { // idx 카운트가 9이하일때
+//                    /*연산결과 배열에 저장*/
+//                    calculationResult[idx] = result;
+//                    idx++; // 다음 반복시 다음 인덱스에 넣기 위에 증가 연산자
+//                }
+
+                /*calculationResult 연산저장*/
+                calculationResult.add(result);
+
+                /*remove입력시 calculationResult 최초 연산 삭제*/
+                System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+                input = sc.next();
+                if (input.equals("remove")) {
+                    calculationResult.poll(); // 가장 처음값 꺼내기
                 }
 
                 /*추가 연산 여부 확인*/
@@ -67,7 +81,7 @@ public class App {
             }
         } while (!(input.equals("exit"))); // exit이 입력되면 반복문 종료, 그 외에는 계속 반복와
 
-        System.out.println(Arrays.toString(calculationResult)); // 배열 저장 확인
+        System.out.println(calculationResult); // 배열 저장 확인
 
     }
 }
