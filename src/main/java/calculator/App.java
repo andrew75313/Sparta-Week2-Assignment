@@ -72,8 +72,19 @@ public class App {
                 System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
                 input = sc.next();
                 if (input.equals("remove")) {
-                    calculationResult.poll(); // 가장 처음값 꺼내기
+                    calculationResult.poll(); // 가장 처음값 꺼내서 없애기
                 }
+
+
+                /*inquiry입력시 calculationResult 전부 출력*/
+                System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
+                input = sc.next();
+                if (input.equals("inquiry")) {
+                    for(int resultIndex : calculationResult) {
+                        System.out.println(resultIndex); // 한 줄씩 출력
+                    }
+                }
+
 
                 /*추가 연산 여부 확인*/
                 System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
