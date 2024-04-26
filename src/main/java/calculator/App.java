@@ -1,6 +1,6 @@
 package calculator;
 
-import java.sql.SQLOutput;
+
 import java.util.*;
 
 public class App {
@@ -15,6 +15,9 @@ public class App {
 
 
         Scanner sc = new Scanner(System.in);
+
+        /* Calculator 객체 생성*/
+        Calculator calculator = new Calculator();
         /* exit 문자열이 입력될 때 까지 연산 반복 반복문*/
         String input = null; // do - while 반복문 조건에 넣기 위해 입력값 초기화
         do {
@@ -54,7 +57,7 @@ public class App {
             /*Calculator의 DivideException Handling*/
             try {
                 /*Calculator 클래스를 활용한 사칙연산*/
-                Deque<Double> calculationResult = Calculator.calculate(num1, num2, operator);
+                Deque<Double> calculationResult = calculator.calculate(num1, num2, operator);
                 /*최근 연산값 출력*/
                 System.out.println("결과: " + calculationResult.peekLast());
             } catch (DivideException e1) {
@@ -82,7 +85,7 @@ public class App {
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
             input = sc.next();
             if (input.equals("remove")) {
-                Calculator.calculationResult.pollFirst(); // 가장 처음값 꺼내서 없애기
+                calculator.getCalculationResult().pollFirst(); // 가장 처음값 꺼내서 없애기
             }
 
 
@@ -90,7 +93,7 @@ public class App {
             System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
             input = sc.next();
             if (input.equals("inquiry")) {
-                for (double resultIndex : Calculator.calculationResult) {
+                for (double resultIndex : calculator.getCalculationResult()) {
                     System.out.println(resultIndex); // 한 줄씩 출력
                 }
             }
