@@ -4,7 +4,20 @@ import java.util.Deque;
 import java.util.Scanner;
 
 public class ArithmeticCalculator extends Calculator{
+    /*사칙연산 클래스선언 */
+    private AddOperator addOperator = new AddOperator();
+    private SubtractOperator subtractOperator = new SubtractOperator();
+    private MultiplyOperator multiplyOperator = new MultiplyOperator();
+    private DivideOperator divideOperator = new DivideOperator();
 
+
+    /*사칙연산 클래스 초기화*/
+    public ArithmeticCalculator() {
+        this.addOperator = new AddOperator();
+        this.subtractOperator = new SubtractOperator();
+        this.multiplyOperator = new MultiplyOperator();
+        this.divideOperator = new DivideOperator();
+    }
 
     public double calculate(int num1, int num2, char operator) throws DivideException {
         double result = 0;
@@ -16,16 +29,16 @@ public class ArithmeticCalculator extends Calculator{
             /* 입력된 operator 값 + - * / 에 따라 각각 연산 후, 결과값 출력*/
             switch (operator) {
                 case '+':
-                    result = num1 + num2;
+                    result = addOperator.operate(num1, num2);
                     break;
                 case '-':
-                    result = num1 - num2;
+                    result = subtractOperator.operate(num1, num2);
                     break;
                 case '*':
-                    result = num1 * num2;
+                    result = multiplyOperator.operate(num1, num2);
                     break;
                 case '/':
-                    result = (double) num1 / num2;
+                    result = divideOperator.operate(num1, num2);
                     break;
             }
             calculationResult.add(result);
