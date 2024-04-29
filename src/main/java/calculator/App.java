@@ -13,23 +13,28 @@ public class App {
 //        /* 10개 이상 결과 무한 저장 Queue 생성*/
 //        Queue<Integer> calculationResult = new LinkedList<>();
 
-
         Scanner sc = new Scanner(System.in);
-
         /* Calculator 객체 생성*/
         Calculator calculator = new Calculator(); // 기본 생성자 사용
         /* exit 문자열이 입력될 때 까지 연산 반복 반복문*/
         String input = null; // do - while 반복문 조건에 넣기 위해 입력값 초기화
+
+        /* 반복문 시작 */
         do {
-            System.out.print("첫 번째 숫자를 입력하세요: ");
-            /* Scanner를 사용하여 양의 정수를 입력받고 적합한 타입의 변수에 저장합니다. */
-            int num1 = sc.nextInt();
-            System.out.print("사칙연산 기호를 입력하세요: "); // + - * / 중 하나를 입력받음
-            /* charAt(idx)는 String타입 하나 입력된 기호를 charAt으로 char타입의 변수로 선언 */
-            char operator = sc.next().charAt(0);
-            System.out.print("두 번째 숫자를 입력하세요: ");
-            /* Scanner를 사용하여 양의 정수를 입력받고 적합한 타입의 변수에 저장합니다. */
-            int num2 = sc.nextInt();
+            System.out.print("사칙연산, 원의너비 둘 중 어느 것을 구하겠습니까? (Arithmetic/Circle 중 입력): ");
+            String decision = sc.next();
+
+            switch (decision) {
+                case "Arithmetic": // 사칙연산일경우 실행
+                    System.out.print("첫 번째 숫자를 입력하세요: ");
+                    /* Scanner를 사용하여 양의 정수를 입력받고 적합한 타입의 변수에 저장합니다. */
+                    int num1 = sc.nextInt();
+                    System.out.print("사칙연산 기호를 입력하세요: "); // + - * / 중 하나를 입력받음
+                    /* charAt(idx)는 String타입 하나 입력된 기호를 charAt으로 char타입의 변수로 선언 */
+                    char operator = sc.next().charAt(0);
+                    System.out.print("두 번째 숫자를 입력하세요: ");
+                    /* Scanner를 사용하여 양의 정수를 입력받고 적합한 타입의 변수에 저장합니다. */
+                    int num2 = sc.nextInt();
 
 
 //            int result = 0; // 연산 결과 초기값
@@ -54,15 +59,15 @@ public class App {
 //                }
 //                System.out.println("결과: " + result);
 
-            /*Calculator의 DivideException Handling*/
-            try {
-                /*Calculator 클래스를 활용한 사칙연산*/
-                Deque<Double> calculationResult = calculator.calculate(num1, num2, operator);
-                /*최근 연산값 출력*/
-                System.out.println("결과: " + calculationResult.peekLast());
-            } catch (DivideException e1) {
-                System.out.println(e1.getMessage());
-            }
+                    /*Calculator의 DivideException Handling*/
+                    try {
+                        /*Calculator 클래스를 활용한 사칙연산*/
+                        double result = calculator.calculate(num1, num2, operator);
+                        /*최근 연산값 출력*/
+                        System.out.println("결과: " + result);
+                    } catch (DivideException e1) {
+                        System.out.println(e1.getMessage());
+                    }
 
 
 //                /*인덱스 9초과를 했을 경우, 처음 값을 지우고 앞으로 당겨 마지막에 저장*/
@@ -88,8 +93,8 @@ public class App {
 //                calculator.getCalculationResult().pollFirst(); // 가장 처음값 꺼내서 없애기
 //            }
 
-            /* Calculator 클래스의 첫 연산결과 삭제 removeResult 메서드 실행 */
-            calculator.removeResult();
+                    /* Calculator 클래스의 첫 연산결과 삭제 removeResult 메서드 실행 */
+                    calculator.removeResult();
 
 
 //            /*inquiry입력시 calculationResult 전부 출력*/
@@ -101,8 +106,27 @@ public class App {
 //                }
 //            }
 
-            /* Calculator 클래스의 저장 연산 결관 출력 inquiryResults 메서드 실행*/
-            calculator.inquiryResults();
+                    /* Calculator 클래스의 저장 연산 결관 출력 inquiryResults 메서드 실행*/
+                    calculator.inquiryResults();
+
+                    break;
+                case "Circle": // 원의 너비일 경우 실행
+                    System.out.print("반지름을 입력하세요: ");
+                    /* Scanner를 사용하여 양의 정수를 입력받고 적합한 타입의 변수에 저장합니다. */
+                    double radius = sc.nextDouble();
+
+                    /* Calculator 클래스를 활용한 원의 너비 구하기*/
+                    double result = calculator.calculateCircleArea(radius);
+                    System.out.println("결과: " + result);
+                    /* 원의 넓이 저장*/
+                    calculator.setCalculationResult(result);
+                    /* 저장된 원의 넓이 값들 바로 전체 조회*/
+                    System.out.println("저장된 원의 넓이 값들입니다.: ");
+                    for(double idx : calculator.getCalculationResult()) {
+                        System.out.println(idx);
+                    }
+                    break;
+            }
 
             /*추가 연산 여부 확인*/
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
