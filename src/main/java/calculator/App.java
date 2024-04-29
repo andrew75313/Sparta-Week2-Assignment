@@ -17,7 +17,7 @@ public class App {
         Scanner sc = new Scanner(System.in);
 
         /* Calculator 객체 생성*/
-        Calculator calculator = new Calculator();
+        Calculator calculator = new Calculator(); // 기본 생성자 사용
         /* exit 문자열이 입력될 때 까지 연산 반복 반복문*/
         String input = null; // do - while 반복문 조건에 넣기 위해 입력값 초기화
         do {

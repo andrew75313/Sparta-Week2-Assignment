@@ -10,8 +10,15 @@ public class Calculator {
     private int num1;
     private int num2;
     private char operator;
-    /* 연산 결과를 저장하는 Deque 선언 및 생성 */
-    private Deque<Double> calculationResult = new LinkedList<>();
+//        /* 연산 결과를 저장하는 Deque 선언 및 생성 */
+//    private Deque<Double> calculationResult = new LinkedList<>();
+    private Deque<Double> calculationResult;
+
+    /* 초기화를 위한 기본 생성자 */
+    public Calculator() {
+        calculationResult = new LinkedList<>();
+    }
+
 
     public Deque<Double> calculate(int num1, int num2, char operator) throws DivideException {
         this.num1 = num1;
@@ -43,6 +50,7 @@ public class Calculator {
             return calculationResult;
         }
     }
+
     /* Getter 메서드 */
     public Deque<Double> getCalculationResult() {
         return this.calculationResult;
