@@ -81,12 +81,15 @@ public class App {
 //                /*calculationResult 연산저장*/
 //                calculationResult.add(result);
 
-            /*remove입력시 calculationResult 최초 연산 삭제*/
-            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
-            input = sc.next();
-            if (input.equals("remove")) {
-                calculator.getCalculationResult().pollFirst(); // 가장 처음값 꺼내서 없애기
-            }
+//            /*remove입력시 calculationResult 최초 연산 삭제*/
+//            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+//            input = sc.next();
+//            if (input.equals("remove")) {
+//                calculator.getCalculationResult().pollFirst(); // 가장 처음값 꺼내서 없애기
+//            }
+
+            /* Calculator 클래스의 removeResult 메서드 실행 */
+            calculator.removeResult();
 
 
             /*inquiry입력시 calculationResult 전부 출력*/

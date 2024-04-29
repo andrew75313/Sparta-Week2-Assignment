@@ -3,6 +3,7 @@ package calculator;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
 public class Calculator {
     /* 필드 생성*/
@@ -53,6 +54,19 @@ public class Calculator {
         this.num2 = num2;
         this.operator = operator;
     }
+
+    /* 연산결과 중 첫번째 결과 삭제 메서드*/
+    public void removeResult() {
+        Scanner sc = new Scanner(System.in);
+        /*remove입력시 calculationResult 최초 연산 삭제*/
+        System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+        String input = sc.next();
+        if (input.equals("remove")) {
+            this.getCalculationResult().pollFirst(); // 가장 처음값 꺼내서 없애기
+        }
+
+    }
+
 }
 
 
