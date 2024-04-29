@@ -88,19 +88,21 @@ public class App {
 //                calculator.getCalculationResult().pollFirst(); // 가장 처음값 꺼내서 없애기
 //            }
 
-            /* Calculator 클래스의 removeResult 메서드 실행 */
+            /* Calculator 클래스의 첫 연산결과 삭제 removeResult 메서드 실행 */
             calculator.removeResult();
 
 
-            /*inquiry입력시 calculationResult 전부 출력*/
-            System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
-            input = sc.next();
-            if (input.equals("inquiry")) {
-                for (double resultIndex : calculator.getCalculationResult()) {
-                    System.out.println(resultIndex); // 한 줄씩 출력
-                }
-            }
+//            /*inquiry입력시 calculationResult 전부 출력*/
+//            System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
+//            input = sc.next();
+//            if (input.equals("inquiry")) {
+//                for (double resultIndex : calculator.getCalculationResult()) {
+//                    System.out.println(resultIndex); // 한 줄씩 출력
+//                }
+//            }
 
+            /* Calculator 클래스의 저장 연산 결관 출력 inquiryResults 메서드 실행*/
+            calculator.inquiryResults();
 
             /*추가 연산 여부 확인*/
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");

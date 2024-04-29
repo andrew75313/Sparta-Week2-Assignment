@@ -64,13 +64,25 @@ public class Calculator {
         if (input.equals("remove")) {
             this.getCalculationResult().pollFirst(); // 가장 처음값 꺼내서 없애기
         }
+    }
+
+    /* 저당된 연산결과 조회 기능 메서드 */
+    public void inquiryResults() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
+        String input = sc.next();
+        if (input.equals("inquiry")) {
+            for (double resultIndex : this.getCalculationResult()) {
+                System.out.println(resultIndex); // 한 줄씩 출력
+            }
+        }
 
     }
 
 }
 
 
-
+/*사용자정의 예외 클래스 DivideException 정의*/
 class DivideException extends Exception {
     public DivideException(String input) {
         super(input);
