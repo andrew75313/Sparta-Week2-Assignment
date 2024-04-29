@@ -4,7 +4,7 @@ package calculator;
 import java.util.*;
 
 public class App {
-    public static void main(String[] args) throws DivideException {
+    public static void main(String[] args) throws Calculator.DivideException { // 예외클래스는 Calculator에서 가져오기
 //        /*연산 결과 10개를 저장할 길이 int배열 객체 생성*/
 //        int[] calculationResult = new int[10];
 //        /*연산 결과를 index에 저장하면서 카운트 초기값*/
@@ -15,7 +15,8 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
         /* Calculator 객체 생성*/
-        Calculator calculator = new Calculator(); // 기본 생성자 사용
+        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator(); // 기본 생성자 사용
+        CircleCalculator circleCalculator = new CircleCalculator(); // 각각 생성
         /* exit 문자열이 입력될 때 까지 연산 반복 반복문*/
         String input = null; // do - while 반복문 조건에 넣기 위해 입력값 초기화
 
@@ -62,10 +63,10 @@ public class App {
                     /*Calculator의 DivideException Handling*/
                     try {
                         /*Calculator 클래스를 활용한 사칙연산*/
-                        double result = calculator.calculate(num1, num2, operator);
+                        double result = arithmeticCalculator.calculate(num1, num2, operator);
                         /*최근 연산값 출력*/
                         System.out.println("결과: " + result);
-                    } catch (DivideException e1) {
+                    } catch (Calculator.DivideException e1) {
                         System.out.println(e1.getMessage());
                     }
 
@@ -94,7 +95,7 @@ public class App {
 //            }
 
                     /* Calculator 클래스의 첫 연산결과 삭제 removeResult 메서드 실행 */
-                    calculator.removeResult();
+                    arithmeticCalculator.removeResult();
 
 
 //            /*inquiry입력시 calculationResult 전부 출력*/
@@ -107,7 +108,7 @@ public class App {
 //            }
 
                     /* Calculator 클래스의 저장 연산 결관 출력 inquiryResults 메서드 실행*/
-                    calculator.inquiryResults();
+                    arithmeticCalculator.inquiryResults();
 
                     break;
                 case "Circle": // 원의 너비일 경우 실행
@@ -116,13 +117,13 @@ public class App {
                     double radius = sc.nextDouble();
 
                     /* Calculator 클래스를 활용한 원의 너비 구하기*/
-                    double result = calculator.calculateCircleArea(radius);
+                    double result = circleCalculator.calculateCircleArea(radius);
                     System.out.println("결과: " + result);
                     /* 원의 넓이 저장*/
-                    calculator.setCalculationResult(result);
+                    circleCalculator.setCircleAreaResult(result);
                     /* 저장된 원의 넓이 값들 바로 전체 조회*/
                     System.out.println("저장된 원의 넓이 값들입니다.: ");
-                    for(double idx : calculator.getCalculationResult()) {
+                    for(double idx : circleCalculator.getCircleAreaResult()) {
                         System.out.println(idx);
                     }
                     break;
