@@ -51,10 +51,39 @@ public class ArithmeticCalculator extends Calculator {
 //    }
 
     /*Calculatable 인터페이스 구현 사칙연산을 활용*/
-    public double calculate(int num1, int num2, Calculatable operator) throws DivideException {
+    public double calculate(int num1, int num2, char operator) throws DivideException {
         double result = 0;
+
+        /*enum을 활용하여 연산*/
+        /*enum의 개념만 알고 있어서, 이렇게 활용하는지 잘 모르겠습니다..*/
+        OperatorType operatorType = null; // 일단 초기화, enum은 새로운 객체생성 불가
+        for (OperatorType op : OperatorType.values()) { // 입력된 operator와 enum의 symbol을 비교
+            if (op.getSymbol() == operator) {
+                operatorType = op;
+            }
+        }
+        /*맞는 Symbol에 따라서 연산 operator 결정*/
+        Calculatable calculatable = null; // switch 문내에서 객체생성 안됨
+        switch (operatorType) {
+            case ADD:
+                calculatable = new AddOperator();
+                break;
+            case SUBSTRACT:
+                calculatable = new SubtractOperator();
+                break;
+            case MULTIPLY:
+                calculatable = new MultiplyOperator();
+                break;
+            case DIVIDE:
+                calculatable = new DivideOperator();
+                break;
+            case MODE:
+                calculatable = new ModOperator();
+                break;
+        }
+
         /*calculate 메서드를 사용할 때, operator만 구분해서 사용*/
-        result = operator.operate(num1, num2);
+        result = calculatable.operate(num1, num2);
         calculationResult.add(result);
         return result;
     }

@@ -63,28 +63,28 @@ public class App {
 
                     /*Calculator의 DivideException Handling*/
                     try {
-                        /*입력값에 따라 Operator 설정*/
-                        Calculatable cal = null; // 조건문에서 생성된 것을 저장하기 위해
-                        switch (operator) {
-                            case '+':
-                                cal = new AddOperator();
-                                break;
-                            case '-':
-                                cal = new SubtractOperator();
-                                break;
-                            case '*':
-                                cal = new MultiplyOperator();
-                                break;
-                            case '/':
-                                cal = new DivideOperator();
-                                break;
-                            case '%':
-                                cal = new ModOperator();
-                                break;
-
-                        }
+//                        /*입력값에 따라 Operator 설정*/
+//                        Calculatable cal = null; // 조건문에서 생성된 것을 저장하기 위해
+//                        switch (operator) {
+//                            case '+':
+//                                cal = new AddOperator();
+//                                break;
+//                            case '-':
+//                                cal = new SubtractOperator();
+//                                break;
+//                            case '*':
+//                                cal = new MultiplyOperator();
+//                                break;
+//                            case '/':
+//                                cal = new DivideOperator();
+//                                break;
+//                            case '%':
+//                                cal = new ModOperator();
+//                                break;
+//
+//                        }
                         /*Calculator 클래스를 활용한 사칙연산*/
-                        double result = arithmeticCalculator.calculate(num1, num2, cal);
+                        double result = arithmeticCalculator.calculate(num1, num2, operator);
                         /*최근 연산값 출력*/
                         System.out.println("결과: " + result);
                     } catch (DivideException e1) {
