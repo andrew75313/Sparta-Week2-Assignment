@@ -3,7 +3,7 @@ package calculator;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class Calculator {
+public abstract class Calculator {
     /* 필드 생성*/
     /* 상속해줄 클래스까지만 유효하게 하기 위해 protected 제어자 설정 */
     protected int num1;

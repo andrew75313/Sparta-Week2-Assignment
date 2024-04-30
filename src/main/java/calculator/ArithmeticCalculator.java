@@ -3,12 +3,13 @@ package calculator;
 import java.util.Deque;
 import java.util.Scanner;
 
-public class ArithmeticCalculator extends Calculator{
+public class ArithmeticCalculator extends Calculator {
     /*사칙연산 클래스선언 */
-    private AddOperator addOperator = new AddOperator();
-    private SubtractOperator subtractOperator = new SubtractOperator();
-    private MultiplyOperator multiplyOperator = new MultiplyOperator();
-    private DivideOperator divideOperator = new DivideOperator();
+    private AddOperator addOperator;
+    private SubtractOperator subtractOperator;
+    private MultiplyOperator multiplyOperator;
+    private DivideOperator divideOperator;
+    private ModOperator modOperator;
 
 
     /*사칙연산 클래스 초기화*/
@@ -17,6 +18,7 @@ public class ArithmeticCalculator extends Calculator{
         this.subtractOperator = new SubtractOperator();
         this.multiplyOperator = new MultiplyOperator();
         this.divideOperator = new DivideOperator();
+        this.modOperator = new ModOperator();
     }
 
     public double calculate(int num1, int num2, char operator) throws DivideException {
@@ -40,6 +42,8 @@ public class ArithmeticCalculator extends Calculator{
                 case '/':
                     result = divideOperator.operate(num1, num2);
                     break;
+                case '%':
+                    result = modOperator.operate(num1, num2);
             }
             calculationResult.add(result);
             return result;
