@@ -6,8 +6,8 @@ import java.util.LinkedList;
 public abstract class Calculator {
     /* 필드 생성*/
     /* 상속해줄 클래스까지만 유효하게 하기 위해 protected 제어자 설정 */
-    protected int num1;
-    protected int num2;
+    protected double num1;
+    protected double num2;
     protected char operator;
     /* 연산 결과를 저장하는 Deque 선언 및 생성 (캡슐화 */
     protected Deque<Double> calculationResult = new LinkedList<>();

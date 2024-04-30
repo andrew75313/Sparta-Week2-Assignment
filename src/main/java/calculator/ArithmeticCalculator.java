@@ -3,7 +3,7 @@ package calculator;
 import java.util.Deque;
 import java.util.Scanner;
 
-public class ArithmeticCalculator extends Calculator {
+public class ArithmeticCalculator <T extends Number> extends Calculator { // Number클래스의 모든 타입을 가능
 //    /*사칙연산 클래스선언 */
 //    private AddOperator addOperator;
 //    private SubtractOperator subtractOperator;
@@ -51,7 +51,12 @@ public class ArithmeticCalculator extends Calculator {
 //    }
 
     /*Calculatable 인터페이스 구현 사칙연산을 활용*/
-    public double calculate(int num1, int num2, char operator) throws DivideException {
+    public double calculate(T number1, T number2, char operator) throws DivideException {
+        /*받은 모든 Number클래스 변수를 전부 double로 형변환*/
+        double num1 = number1.doubleValue();
+        double num2 = number2.doubleValue();
+
+        /*result 초기화*/
         double result = 0;
 
         /*enum을 활용하여 연산*/

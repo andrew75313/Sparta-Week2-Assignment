@@ -29,13 +29,13 @@ public class App {
                 case "Arithmetic": // 사칙연산일경우 실행
                     System.out.print("첫 번째 숫자를 입력하세요: ");
                     /* Scanner를 사용하여 양의 정수를 입력받고 적합한 타입의 변수에 저장합니다. */
-                    int num1 = sc.nextInt();
+                    double num1 = sc.nextDouble();
                     System.out.print("사칙연산 기호를 입력하세요: "); // + - * / 중 하나를 입력받음
                     /* charAt(idx)는 String타입 하나 입력된 기호를 charAt으로 char타입의 변수로 선언 */
                     char operator = sc.next().charAt(0);
                     System.out.print("두 번째 숫자를 입력하세요: ");
                     /* Scanner를 사용하여 양의 정수를 입력받고 적합한 타입의 변수에 저장합니다. */
-                    int num2 = sc.nextInt();
+                    double num2 = sc.nextDouble();
 
 
 //            int result = 0; // 연산 결과 초기값
