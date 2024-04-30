@@ -23,10 +23,7 @@ public abstract class Calculator {
     static final Deque<Double> circleAreaResult = new LinkedList<>();
 
 
-
-
-
-    /* 초기화를 위한 기본 생성자 */
+//    /* 초기화를 위한 기본 생성자 */
 //    public Calculator() {
 //        calculationResult = new LinkedList<>();
 //    }
@@ -114,12 +111,4 @@ public abstract class Calculator {
 //
 //}
 
-
-
-    /*사용자정의 예외 클래스 DivideException 정의*/
-    class DivideException extends Exception {
-        public DivideException(String input) {
-            super(input);
-        }
-    }
 }

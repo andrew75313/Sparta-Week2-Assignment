@@ -4,7 +4,7 @@ package calculator;
 import java.util.*;
 
 public class App {
-    public static void main(String[] args) throws Calculator.DivideException { // 예외클래스는 Calculator에서 가져오기
+    public static void main(String[] args) throws DivideException {
 //        /*연산 결과 10개를 저장할 길이 int배열 객체 생성*/
 //        int[] calculationResult = new int[10];
 //        /*연산 결과를 index에 저장하면서 카운트 초기값*/
@@ -60,13 +60,34 @@ public class App {
 //                }
 //                System.out.println("결과: " + result);
 
+
                     /*Calculator의 DivideException Handling*/
                     try {
+                        /*입력값에 따라 Operator 설정*/
+                        Calculatable cal = null; // 조건문에서 생성된 것을 저장하기 위해
+                        switch (operator) {
+                            case '+':
+                                cal = new AddOperator();
+                                break;
+                            case '-':
+                                cal = new SubtractOperator();
+                                break;
+                            case '*':
+                                cal = new MultiplyOperator();
+                                break;
+                            case '/':
+                                cal = new DivideOperator();
+                                break;
+                            case '%':
+                                cal = new ModOperator();
+                                break;
+
+                        }
                         /*Calculator 클래스를 활용한 사칙연산*/
-                        double result = arithmeticCalculator.calculate(num1, num2, operator);
+                        double result = arithmeticCalculator.calculate(num1, num2, cal);
                         /*최근 연산값 출력*/
                         System.out.println("결과: " + result);
-                    } catch (Calculator.DivideException e1) {
+                    } catch (DivideException e1) {
                         System.out.println(e1.getMessage());
                     }
 
@@ -123,7 +144,7 @@ public class App {
                     circleCalculator.setCircleAreaResult(result);
                     /* 저장된 원의 넓이 값들 바로 전체 조회*/
                     System.out.println("저장된 원의 넓이 값들입니다.: ");
-                    for(double idx : circleCalculator.getCircleAreaResult()) {
+                    for (double idx : circleCalculator.getCircleAreaResult()) {
                         System.out.println(idx);
                     }
                     break;
