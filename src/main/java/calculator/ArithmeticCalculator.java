@@ -2,9 +2,11 @@ package calculator;
 
 import java.util.Deque;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
-public class ArithmeticCalculator <T extends Number> extends Calculator { // Number클래스의 모든 타입을 가능
-//    /*사칙연산 클래스선언 */
+public class ArithmeticCalculator<T extends Number> extends Calculator { // Number클래스의 모든 타입을 가능
+
+//        /*사칙연산 클래스선언 */
 //    private AddOperator addOperator;
 //    private SubtractOperator subtractOperator;
 //    private MultiplyOperator multiplyOperator;
@@ -128,4 +130,28 @@ public class ArithmeticCalculator <T extends Number> extends Calculator { // Num
 
     }
 
+    /*저장 결과 중 Scanner 입력받은 값보다 큰 결과 값들 출력 메서드*/
+    public void biggerResult(double num1, double num2) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("입력 값보다 더 큰 값을 출력하겠습니까? (yes 입력 시 조회)");
+        String input = sc.next();
+        /*yes 입력시*/
+        /*num1, num2 중 큰 값 설정*/
+        if (input.equals("yes")) {
+            Double maxNum;
+            if (num1 < num2) {
+                maxNum = num2;
+            } else {
+                maxNum = num1;
+            }
+
+            /*calculationResult Deque 컬렉션을 스트림으로 만들기*/
+            /*컬렉션에 저장된 값을 변경하지 않아도 가능*/
+            Stream<Double> biggerResultStream = calculationResult.stream();
+            /*Stream 중간연산 filter 사용*/
+            /*Stream 최종연산 forEach 사용*/
+            biggerResultStream.filter(d -> d > maxNum).forEach(System.out::println);
+        }
+
+    }
 }

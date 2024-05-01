@@ -131,6 +131,10 @@ public class App {
                     /* Calculator 클래스의 저장 연산 결관 출력 inquiryResults 메서드 실행*/
                     arithmeticCalculator.inquiryResults();
 
+                    /* 입력값 보다 가장 큰 결과값만 조회하는 biggerResult 메서드 실행*/
+                    arithmeticCalculator.biggerResult(num1, num2);
+
+
                     break;
                 case "Circle": // 원의 너비일 경우 실행
                     System.out.print("반지름을 입력하세요: ");
