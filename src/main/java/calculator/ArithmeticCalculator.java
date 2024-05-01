@@ -5,6 +5,13 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class ArithmeticCalculator<T extends Number> extends Calculator { // Number클래스의 모든 타입을 가능
+    /*super을 통해 상위 Calculator 클래스 새성자에 보내줌*/
+    public ArithmeticCalculator(Deque<Double> calculationResult) {
+        super(calculationResult);
+    }
+
+
+
 
 //        /*사칙연산 클래스선언 */
 //    private AddOperator addOperator;
@@ -87,24 +94,27 @@ public class ArithmeticCalculator<T extends Number> extends Calculator { // Numb
             case MODE:
                 calculatable = new ModOperator();
                 break;
+            default:
+                System.out.println("옳바른 선택이 아닙니다.");
+                break;
         }
 
         /*calculate 메서드를 사용할 때, operator만 구분해서 사용*/
         result = calculatable.operate(num1, num2);
-        calculationResult.add(result);
+        super.setCalculationResult(result); // 결과 저장
         return result;
     }
 
 
-    /* Getter 메서드 */
-    public Deque<Double> getCalculationResult() {
-        return calculationResult;
-    }
+//    /* Getter 메서드 */
+//    public Deque<Double> getCalculationResult() {
+//        return calculationResult;
+//    }
 
-    /* Setter 메서드 */
-    public void setCalculationResult(double result) {
-        calculationResult.add(result); // 결과 저장 메서드에 임의로 추가로 저장
-    }
+//    /* Setter 메서드 */
+//    public void setCalculationResult(double result) {
+//        calculationResult.add(result); // 결과 저장 메서드에 임의로 추가로 저장
+//    }
 
     /* 연산결과 중 첫번째 결과 삭제 메서드*/
     public void removeResult() {
@@ -113,17 +123,18 @@ public class ArithmeticCalculator<T extends Number> extends Calculator { // Numb
         System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
         String input = sc.next();
         if (input.equals("remove")) {
-            this.getCalculationResult().pollFirst(); // 가장 처음값 꺼내서 없애기
+            super.getCalculationResult().pollFirst(); // 가장 처음값 꺼내서 없애기
         }
     }
 
-    /* 저당된 연산결과 조회 기능 메서드 */
+    /* 저당된 연산결과 조회 기능 메서드 오버라이드*/
+    @Override
     public void inquiryResults() {
         Scanner sc = new Scanner(System.in);
         System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
         String input = sc.next();
         if (input.equals("inquiry")) {
-            for (double resultIndex : this.getCalculationResult()) {
+            for (double resultIndex : super.getCalculationResult()) { //Calculator에서 가져다가 씀
                 System.out.println(resultIndex); // 한 줄씩 출력
             }
         }
@@ -147,7 +158,7 @@ public class ArithmeticCalculator<T extends Number> extends Calculator { // Numb
 
             /*calculationResult Deque 컬렉션을 스트림으로 만들기*/
             /*컬렉션에 저장된 값을 변경하지 않아도 가능*/
-            Stream<Double> biggerResultStream = calculationResult.stream();
+            Stream<Double> biggerResultStream = super.getCalculationResult().stream();
             /*Stream 중간연산 filter 사용*/
             /*Stream 최종연산 forEach 사용*/
             biggerResultStream.filter(d -> d > maxNum).forEach(System.out::println);

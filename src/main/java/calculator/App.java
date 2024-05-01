@@ -15,8 +15,10 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
         /* Calculator 객체 생성*/
-        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator(); // 기본 생성자 사용
-        CircleCalculator circleCalculator = new CircleCalculator(); // 각각 생성
+        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator(new LinkedList<>());
+        CircleCalculator circleCalculator = new CircleCalculator(new LinkedList<>());
+
+
         /* exit 문자열이 입력될 때 까지 연산 반복 반복문*/
         String input = null; // do - while 반복문 조건에 넣기 위해 입력값 초기화
 
@@ -63,26 +65,6 @@ public class App {
 
                     /*Calculator의 DivideException Handling*/
                     try {
-//                        /*입력값에 따라 Operator 설정*/
-//                        Calculatable cal = null; // 조건문에서 생성된 것을 저장하기 위해
-//                        switch (operator) {
-//                            case '+':
-//                                cal = new AddOperator();
-//                                break;
-//                            case '-':
-//                                cal = new SubtractOperator();
-//                                break;
-//                            case '*':
-//                                cal = new MultiplyOperator();
-//                                break;
-//                            case '/':
-//                                cal = new DivideOperator();
-//                                break;
-//                            case '%':
-//                                cal = new ModOperator();
-//                                break;
-//
-//                        }
                         /*Calculator 클래스를 활용한 사칙연산*/
                         double result = arithmeticCalculator.calculate(num1, num2, operator);
                         /*최근 연산값 출력*/
@@ -90,8 +72,6 @@ public class App {
                     } catch (DivideException e1) {
                         System.out.println(e1.getMessage());
                     }
-
-
 //                /*인덱스 9초과를 했을 경우, 처음 값을 지우고 앞으로 당겨 마지막에 저장*/
 //                if (idx > 9) {
 //                    for (int i = 0; i < 9; i++) { // index 하나씩 앞으로 당기면서 덮어쓰기
@@ -114,11 +94,8 @@ public class App {
 //            if (input.equals("remove")) {
 //                calculator.getCalculationResult().pollFirst(); // 가장 처음값 꺼내서 없애기
 //            }
-
                     /* Calculator 클래스의 첫 연산결과 삭제 removeResult 메서드 실행 */
                     arithmeticCalculator.removeResult();
-
-
 //            /*inquiry입력시 calculationResult 전부 출력*/
 //            System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
 //            input = sc.next();
@@ -127,10 +104,8 @@ public class App {
 //                    System.out.println(resultIndex); // 한 줄씩 출력
 //                }
 //            }
-
                     /* Calculator 클래스의 저장 연산 결관 출력 inquiryResults 메서드 실행*/
                     arithmeticCalculator.inquiryResults();
-
                     /* 입력값 보다 가장 큰 결과값만 조회하는 biggerResult 메서드 실행*/
                     arithmeticCalculator.biggerResult(num1, num2);
 
@@ -143,22 +118,24 @@ public class App {
 
                     /* Calculator 클래스를 활용한 원의 너비 구하기*/
                     double result = circleCalculator.calculateCircleArea(radius);
-                    System.out.println("결과: " + result);
-                    /* 원의 넓이 저장*/
-                    circleCalculator.setCircleAreaResult(result);
-                    /* 저장된 원의 넓이 값들 바로 전체 조회*/
-                    System.out.println("저장된 원의 넓이 값들입니다.: ");
-                    for (double idx : circleCalculator.getCircleAreaResult()) {
-                        System.out.println(idx);
-                    }
+//                    System.out.println("결과: " + result);
+//                    /* 원의 넓이 저장*/
+//                    circleCalculator.setCircleAreaResult(result);
+//                    /* 저장된 원의 넓이 값들 바로 전체 조회*/
+//                    System.out.println("저장된 원의 넓이 값들입니다.: ");
+//                    for (double idx : circleCalculator.getCircleAreaResult()) {
+//                        System.out.println(idx);
+//                    }
+
+                    /*저장값 조회 메서드*/
+                    circleCalculator.inquiryResults();
                     break;
             }
 
             /*추가 연산 여부 확인*/
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
-            input = sc.next();
 
-        } while (!(input.equals("exit"))); // exit이 입력되면 반복문 종료, 그 외에는 계속 반복와
+        } while (!(sc.next().equals("exit"))); // exit이 입력되면 반복문 종료, 그 외에는 계속 반복와
 
 
     }

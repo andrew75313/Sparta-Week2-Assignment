@@ -4,23 +4,42 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 public abstract class Calculator {
-//    /* 필드 생성*/
+    //    /* 필드 생성*/
 //    /* 상속해줄 클래스까지만 유효하게 하기 위해 protected 제어자 설정 */
 //    protected double num1;
 //    protected double num2;
 //    protected char operator;
     /* 연산 결과를 저장하는 Deque 선언 및 생성 (캡슐화 */
-    protected Deque<Double> calculationResult = new LinkedList<>();
+    private final Deque<Double> calculationResult; // ArithmeticCalculator, CircleCalculator 값 모두 같은곳에 저장
 
-    /* 원넓이 저장 필드 생성 */
-    /* static final 모두 사용할 수 있지만,
-    동시에 초기값을 입력해서 그 값을 절대 바꿀수 없는 상수로 선언을 해야함.
-    하지만, 컬렉션일 경우에는 final로 초기값을 선언해버린다고 해도 객체변경은 안되나
-    계속해서 그 안의 데이터들을 마음대로 수정할 수 있기 때문에 final의 의미가 없음
-    단, Null초기화를 컴파일러가 진행하기때문에 이때, add를 통해 값을 넣으려고 하면,
-    NullPointerException 가능성이 있기 때문에 가급적 final과 함께 Deque을
-    비어있는 LinkedList로 생성해줘야한다고 판단해서 static final을 사용했습니다*/
-    static final Deque<Double> circleAreaResult = new LinkedList<>();
+    /*초기화 생성자*/
+    public Calculator(Deque<Double> calculationResult) {
+        this.calculationResult = calculationResult;
+    }
+
+//    /* 원넓이 저장 필드 생성 */
+//    /* static final 모두 사용할 수 있지만,
+//    동시에 초기값을 입력해서 그 값을 절대 바꿀수 없는 상수로 선언을 해야함.
+//    하지만, 컬렉션일 경우에는 final로 초기값을 선언해버린다고 해도 객체변경은 안되나
+//    계속해서 그 안의 데이터들을 마음대로 수정할 수 있기 때문에 final의 의미가 없음
+//    단, Null초기화를 컴파일러가 진행하기때문에 이때, add를 통해 값을 넣으려고 하면,
+//    NullPointerException 가능성이 있기 때문에 가급적 final과 함께 Deque을
+//    비어있는 LinkedList로 생성해줘야한다고 판단해서 static final을 사용했습니다*/
+//    static final Deque<Double> circleAreaResult = new LinkedList<>();
+
+    /*calculationResult의 Getter*/
+    public Deque<Double> getCalculationResult() {
+        return calculationResult;
+    }
+    /*calculationResult의 Setter*/
+    public void setCalculationResult(double result) {
+        calculationResult.add(result);
+    }
+
+    /*ArithmeticCalculator CircleCalculator 의 공통 메서드*/
+    abstract void inquiryResults();
+
+
 
 
 //    /* 초기화를 위한 기본 생성자 */
@@ -94,7 +113,11 @@ public abstract class Calculator {
 //
 //    }
 
-//    /* 원의 넓이 계산 & 반환 메서드 */
+//    /**
+//     * 원의 넓이를 구하는 메서드
+//     * @param radius : 원의 반지름
+//     * @return 원의 넓이
+//     */
 //    public double calculateCircleArea(double radius) {
 //        double circleArea = radius*radius*PI;
 //        return circleArea;
