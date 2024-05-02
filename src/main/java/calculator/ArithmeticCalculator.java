@@ -10,7 +10,8 @@ public class ArithmeticCalculator<T extends Number> extends Calculator { // Numb
         super(calculationResult);
     }
 
-
+    /*인터페이스 구현*/
+    private Calculatable calculatable; // switch 문내에서 객체생성 안됨
 
 
 //        /*사칙연산 클래스선언 */
@@ -68,6 +69,8 @@ public class ArithmeticCalculator<T extends Number> extends Calculator { // Numb
         /*result 초기화*/
         double result = 0;
 
+        return operatorFactory(operator).operate(num1, num2);
+
         /*enum을 활용하여 연산*/
         /*enum의 개념만 알고 있어서, 이렇게 활용하는지 잘 모르겠습니다..*/
         OperatorType operatorType = null; // 일단 초기화, enum은 새로운 객체생성 불가
@@ -77,7 +80,6 @@ public class ArithmeticCalculator<T extends Number> extends Calculator { // Numb
             }
         }
         /*맞는 Symbol에 따라서 연산 operator 결정*/
-        Calculatable calculatable = null; // switch 문내에서 객체생성 안됨
         switch (operatorType) {
             case ADD:
                 calculatable = new AddOperator();
@@ -103,6 +105,17 @@ public class ArithmeticCalculator<T extends Number> extends Calculator { // Numb
         result = calculatable.operate(num1, num2);
         super.setCalculationResult(result); // 결과 저장
         return result;
+    }
+
+    /*연산자를 정해주는 새로운 메서드*/
+    private Calculatable operatorFactory(char operator) {
+        return switch (operator) {
+            case '+' -> new AddOperator();
+            case '-' -> new SubtractOperator();
+            case '*' -> new MultiplyOperator();
+            case '/' -> new DivideOperator();
+            case '%' -> new ModOperator();
+        };
     }
 
 
