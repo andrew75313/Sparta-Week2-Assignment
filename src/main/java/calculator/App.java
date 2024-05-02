@@ -4,7 +4,7 @@ package calculator;
 import java.util.*;
 
 public class App {
-    public static void main(String[] args) throws DivideException {
+    public static void main(String[] args) throws CalculationException {
 //        /*연산 결과 10개를 저장할 길이 int배열 객체 생성*/
 //        int[] calculationResult = new int[10];
 //        /*연산 결과를 index에 저장하면서 카운트 초기값*/
@@ -69,7 +69,7 @@ public class App {
                         double result = arithmeticCalculator.calculate(num1, num2, operator);
                         /*최근 연산값 출력*/
                         System.out.println("결과: " + result);
-                    } catch (DivideException e1) {
+                    } catch (CalculationException e1) {
                         System.out.println(e1.getMessage());
                     }
 //                /*인덱스 9초과를 했을 경우, 처음 값을 지우고 앞으로 당겨 마지막에 저장*/

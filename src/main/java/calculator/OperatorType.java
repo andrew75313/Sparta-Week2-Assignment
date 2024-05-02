@@ -16,9 +16,23 @@ public enum OperatorType {
         this.symbol = symbol;
     }
 
-    /*해당 symbol을 얻을 수 있는 Getter*/
-    public char getSymbol() {
-        return symbol;
+    /**
+     * char operator 값을 받아 해당 OperatorType 반환 메서드
+     *
+     * @return OperatorType
+     * @parma char : operator
+     */
+    public static OperatorType fromOperator(char operator) throws CalculationException { // 일단 초기화, enum은 새로운 객체생성 불가
+        for (OperatorType op : OperatorType.values()) { // 입력된 operator와 enum의 symbol을 비교
+            if (op.symbol == operator) { // enum에서 저장된 필드변수를 바로 불러올 수 있음 getter 필요 X
+               return op;
+            }
+        }
+        throw new CalculationException("test");
     }
-
 }
+//
+//
+//    public char getSymbol() {
+//        return symbol;
+//    }
