@@ -15,8 +15,8 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
         /* Calculator 객체 생성*/
-        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator(new LinkedList<>());
-        CircleCalculator circleCalculator = new CircleCalculator(new LinkedList<>());
+        ArithmeticCalculator<Double> arithmeticCalculator = new ArithmeticCalculator<>(new LinkedList<>(), Double.class);
+        CircleCalculator<Double> circleCalculator = new CircleCalculator<>(new LinkedList<>(), Double.class);
 
 
         /* exit 문자열이 입력될 때 까지 연산 반복 반복문*/
@@ -107,7 +107,13 @@ public class App {
                     /* Calculator 클래스의 저장 연산 결관 출력 inquiryResults 메서드 실행*/
                     arithmeticCalculator.inquiryResults();
                     /* 입력값 보다 가장 큰 결과값만 조회하는 biggerResult 메서드 실행*/
-                    arithmeticCalculator.biggerResult(num1, num2);
+                    System.out.print("입력 값보다 더 큰 값을 출력하겠습니까? (yes 입력 시 조회)");
+                    /*yes 입력시 기준값 입력*/
+                    if (sc.next().equals("yes")) {
+                        System.out.print("기준 값을 입력하세요.: ");
+                        double num = sc.nextDouble();
+                        arithmeticCalculator.biggerResult(num);
+                    }
 
 
                     break;

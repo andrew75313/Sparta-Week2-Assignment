@@ -28,7 +28,7 @@ public enum OperatorType {
                return op;
             }
         }
-        throw new CalculationException("test");
+        throw new CalculationException("잘못 입력된 연산기호 입니다.");
     }
 }
 //

@@ -3,17 +3,17 @@ package calculator;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public abstract class Calculator {
+public abstract class Calculator<T extends Number> {
     //    /* 필드 생성*/
 //    /* 상속해줄 클래스까지만 유효하게 하기 위해 protected 제어자 설정 */
 //    protected double num1;
 //    protected double num2;
 //    protected char operator;
     /* 연산 결과를 저장하는 Deque 선언 및 생성 (캡슐화 */
-    private final Deque<Double> calculationResult; // ArithmeticCalculator, CircleCalculator 값 모두 같은곳에 저장
+    private final Deque<T> calculationResult; // ArithmeticCalculator, CircleCalculator 값 모두 같은곳에 저장
 
     /*초기화 생성자*/
-    public Calculator(Deque<Double> calculationResult) {
+    public Calculator(Deque<T> calculationResult) {
         this.calculationResult = calculationResult;
     }
 
@@ -28,11 +28,11 @@ public abstract class Calculator {
 //    static final Deque<Double> circleAreaResult = new LinkedList<>();
 
     /*calculationResult의 Getter*/
-    public Deque<Double> getCalculationResult() {
+    public Deque<T> getCalculationResult() {
         return calculationResult;
     }
     /*calculationResult의 Setter*/
-    public void setCalculationResult(double result) {
+    public void setCalculationResult(T result) {
         calculationResult.add(result);
     }
 
