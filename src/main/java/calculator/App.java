@@ -5,14 +5,6 @@ import java.util.*;
 
 public class App {
     public static void main(String[] args) throws CalculationException {
-//        /*연산 결과 10개를 저장할 길이 int배열 객체 생성*/
-//        int[] calculationResult = new int[10];
-//        /*연산 결과를 index에 저장하면서 카운트 초기값*/
-//        int idx = 0;
-//
-//        /* 10개 이상 결과 무한 저장 Queue 생성*/
-//        Queue<Integer> calculationResult = new LinkedList<>();
-
         Scanner sc = new Scanner(System.in);
         /* Calculator 객체 생성*/
         ArithmeticCalculator<Double> arithmeticCalculator = new ArithmeticCalculator<>(new LinkedList<>(), Double.class);
@@ -39,30 +31,6 @@ public class App {
                     /* Scanner를 사용하여 양의 정수를 입력받고 적합한 타입의 변수에 저장합니다. */
                     double num2 = sc.nextDouble();
 
-
-//            int result = 0; // 연산 결과 초기값
-//            /*연산 시작*/
-//            if (operator == '/' && num2 == 0) { // 분모가 0인 나눗셈은 연산 없이 경고문구 출력
-//                System.out.println("나눗셈 연산에서 분모에 0이 입력될 수 없습니다.");
-//            } else {
-//                /* 입력된 operator 값 + - * / 에 따라 각각 연산 후, 결과값 출력*/
-//                switch (operator) {
-//                    case '+':
-//                        result = num1 + num2;
-//                        break;
-//                    case '-':
-//                        result = num1 - num2;
-//                        break;
-//                    case '*':
-//                        result = num1 * num2;
-//                        break;
-//                    case '/':
-//                        result = num1 / num2;
-//                        break;
-//                }
-//                System.out.println("결과: " + result);
-
-
                     /*Calculator의 DivideException Handling*/
                     try {
                         /*Calculator 클래스를 활용한 사칙연산*/
@@ -72,38 +40,7 @@ public class App {
                     } catch (CalculationException e1) {
                         System.out.println(e1.getMessage());
                     }
-//                /*인덱스 9초과를 했을 경우, 처음 값을 지우고 앞으로 당겨 마지막에 저장*/
-//                if (idx > 9) {
-//                    for (int i = 0; i < 9; i++) { // index 하나씩 앞으로 당기면서 덮어쓰기
-//                        calculationResult[i] = calculationResult[i + 1];
-//                    }
-//                    calculationResult[9] = result; // 새로 들어온값 index 9에 덮어쓰기
-//                    idx++; // 연산 수 카운팅 이어서
-//                } else { // idx 카운트가 9이하일때
-//                    /*연산결과 배열에 저장*/
-//                    calculationResult[idx] = result;
-//                    idx++; // 다음 반복시 다음 인덱스에 넣기 위에 증가 연산자
-//                }
-//
-//                /*calculationResult 연산저장*/
-//                calculationResult.add(result);
 
-//            /*remove입력시 calculationResult 최초 연산 삭제*/
-//            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
-//            input = sc.next();
-//            if (input.equals("remove")) {
-//                calculator.getCalculationResult().pollFirst(); // 가장 처음값 꺼내서 없애기
-//            }
-                    /* Calculator 클래스의 첫 연산결과 삭제 removeResult 메서드 실행 */
-                    arithmeticCalculator.removeResult();
-//            /*inquiry입력시 calculationResult 전부 출력*/
-//            System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
-//            input = sc.next();
-//            if (input.equals("inquiry")) {
-//                for (double resultIndex : calculator.getCalculationResult()) {
-//                    System.out.println(resultIndex); // 한 줄씩 출력
-//                }
-//            }
                     /* Calculator 클래스의 저장 연산 결관 출력 inquiryResults 메서드 실행*/
                     arithmeticCalculator.inquiryResults();
                     /* 입력값 보다 가장 큰 결과값만 조회하는 biggerResult 메서드 실행*/
@@ -124,14 +61,6 @@ public class App {
 
                     /* Calculator 클래스를 활용한 원의 너비 구하기*/
                     double result = circleCalculator.calculateCircleArea(radius);
-//                    System.out.println("결과: " + result);
-//                    /* 원의 넓이 저장*/
-//                    circleCalculator.setCircleAreaResult(result);
-//                    /* 저장된 원의 넓이 값들 바로 전체 조회*/
-//                    System.out.println("저장된 원의 넓이 값들입니다.: ");
-//                    for (double idx : circleCalculator.getCircleAreaResult()) {
-//                        System.out.println(idx);
-//                    }
 
                     /*저장값 조회 메서드*/
                     circleCalculator.inquiryResults();

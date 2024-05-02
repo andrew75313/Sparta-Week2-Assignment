@@ -21,17 +21,13 @@ public class CircleCalculator<T extends Number> extends Calculator {
      * @param radius : 원의 반지름
      * @return 원의 넓이
      */
-    public T calculateCircleArea(T radius) throws CalculationException{
+    public T calculateCircleArea(T radius) throws CalculationException {
 
         double result = radius.doubleValue() * radius.doubleValue() * PI;
         super.setCalculationResult(result); //결과 저장
         return NumberConversion.convertNumberType(result, type);
     }
 
-//    /* 원의 넓이 저장 컬렉션 Getter 메서드*/
-//    public Deque<Double> getCircleAreaResult() {
-//        return circleAreaResult; // 저장필드 전체 반환
-//    }
 
     @Override
     public void inquiryResults() {
@@ -45,12 +41,5 @@ public class CircleCalculator<T extends Number> extends Calculator {
         }
 
     }
-
-//    /* 원의 넓이 Setter 메서드 */
-//    public void setCircleAreaResult(double result) {
-//        circleAreaResult.add(result); // 외부에서 연산 결과 추가
-//    }
-
-
 }
 

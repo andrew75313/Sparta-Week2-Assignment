@@ -19,102 +19,16 @@ public class ArithmeticCalculator<T extends Number> extends Calculator { // Numb
     private Calculatable calculatable; // switch 문내에서 객체생성 안됨
 
 
-//        /*사칙연산 클래스선언 */
-//    private AddOperator addOperator;
-//    private SubtractOperator subtractOperator;
-//    private MultiplyOperator multiplyOperator;
-//    private DivideOperator divideOperator;
-//    private ModOperator modOperator;
-//
-//
-//    /*사칙연산 클래스 초기화*/
-//    public ArithmeticCalculator() {
-//        this.addOperator = new AddOperator();
-//        this.subtractOperator = new SubtractOperator();
-//        this.multiplyOperator = new MultiplyOperator();
-//        this.divideOperator = new DivideOperator();
-//        this.modOperator = new ModOperator();
-//    }
-
-//    public double calculate(int num1, int num2, char operator) throws CalculationException {
-//        double result = 0;
-//        /*사칙연산 & 나눗셈오류출력*/
-//        if (operator == '/' && num2 == 0) { // 분모가 0인 나눗셈은 연산 없이 경고문구 출력
-//            /**/
-//            throw new CalculationException("나눗셈 연산에서 분모에 0이 입력될 수 없습니다.");
-//        } else {
-//            /* 입력된 operator 값 + - * / 에 따라 각각 연산 후, 결과값 출력*/
-//            switch (operator) {
-//                case '+':
-//                    result = addOperator.operate(num1, num2);
-//                    break;
-//                case '-':
-//                    result = subtractOperator.operate(num1, num2);
-//                    break;
-//                case '*':
-//                    result = multiplyOperator.operate(num1, num2);
-//                    break;
-//                case '/':
-//                    result = divideOperator.operate(num1, num2);
-//                    break;
-//                case '%':
-//                    result = modOperator.operate(num1, num2);
-//            }
-//
-//        calculationResult.add(result);
-//        return result;
-//    }
-
     /*Calculatable 인터페이스 구현 사칙연산을 활용*/
     public T calculate(T num1, T num2, char operator) throws CalculationException {
-//        /*받은 모든 Number클래스 변수를 전부 double로 형변환*/
-//        double num1 = number1.doubleValue();
-//        double num2 = number2.doubleValue();
-//
-//        /*result 초기화*/
-//        double result = 0;
 
-
-
-//        /*enum을 활용하여 연산*/
-//        /*enum의 개념만 알고 있어서, 이렇게 활용하는지 잘 모르겠습니다..*/
-//        OperatorType operatorType = null; // 일단 초기화, enum은 새로운 객체생성 불가
-//        for (OperatorType op : OperatorType.values()) { // 입력된 operator와 enum의 symbol을 비교
-//            if (op.getSymbol() == operator) {
-//                operatorType = op;
-//            }
-//        }
-//        /*맞는 Symbol에 따라서 연산 operator 결정*/
-//        switch (operatorType) {
-//            case ADD:
-//                calculatable = new AddOperator();
-//                break;
-//            case SUBSTRACT:
-//                calculatable = new SubtractOperator();
-//                break;
-//            case MULTIPLY:
-//                calculatable = new MultiplyOperator();
-//                break;
-//            case DIVIDE:
-//                calculatable = new DivideOperator();
-//                break;
-//            case MODE:
-//                calculatable = new ModOperator();
-//                break;
-//            default:
-//                System.out.println("옳바른 선택이 아닙니다.");
-//                break;
-//        }
-//
-//        /*calculate 메서드를 사용할 때, operator만 구분해서 사용*/
-//        result = calculatable.operate(num1, num2);
         super.setCalculationResult(operatorFactory(operator).operate(num1, num2)); // 결과 저장
         /*operatorFactory에 operator넣어서 연산자를 불러오고 다음에 operate 메서드를 불러와서 num1 num2 넣어서 계산*/
         return operatorFactory(operator).operate(num1, num2);
     }
 
     /*연산자를 정해주는 새로운 메서드*/
-    private Calculatable<T> operatorFactory(char operator) throws CalculationException{
+    private Calculatable<T> operatorFactory(char operator) throws CalculationException {
         /*operator타입에 따라 operatorType 불러오기*/
         OperatorType operatorType = OperatorType.fromOperator(operator);
         return switch (operatorType) {
@@ -126,16 +40,6 @@ public class ArithmeticCalculator<T extends Number> extends Calculator { // Numb
         };
     }
 
-
-//    /* Getter 메서드 */
-//    public Deque<Double> getCalculationResult() {
-//        return calculationResult;
-//    }
-
-//    /* Setter 메서드 */
-//    public void setCalculationResult(double result) {
-//        calculationResult.add(result); // 결과 저장 메서드에 임의로 추가로 저장
-//    }
 
     /* 연산결과 중 첫번째 결과 삭제 메서드*/
     public void removeResult() {
@@ -164,13 +68,13 @@ public class ArithmeticCalculator<T extends Number> extends Calculator { // Numb
 
     /*저장 결과 중 Scanner 입력받은 값보다 큰 결과 값들 출력 메서드*/
     public void biggerResult(double number) {
-            /*calculationResult Deque 컬렉션을 스트림으로 만들기*/
-            /*컬렉션에 저장된 값을 변경하지 않아도 가능*/
-            Stream<Double> biggerResultStream = super.getCalculationResult().stream();
-            /*Stream 중간연산 filter 사용*/
-            /*Stream 최종연산 forEach 사용*/
-            biggerResultStream.filter(d -> d > number).forEach(System.out::println);
-        }
-
+        /*calculationResult Deque 컬렉션을 스트림으로 만들기*/
+        /*컬렉션에 저장된 값을 변경하지 않아도 가능*/
+        Stream<Double> biggerResultStream = super.getCalculationResult().stream();
+        /*Stream 중간연산 filter 사용*/
+        /*Stream 최종연산 forEach 사용*/
+        biggerResultStream.filter(d -> d > number).forEach(System.out::println);
     }
+
 }
+
